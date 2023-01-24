@@ -1,10 +1,5 @@
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
 import Head from "next/head";
-// Fonts & Styles
-// import { Inter } from "@next/font/google";
-// const inter = Inter({ subsets: ["latin"] });
-// import styles from "@/styles/Home.module.css";
 
 // Components
 import List from "@/components/List";
@@ -14,24 +9,23 @@ import Container from "@/components/Container";
 
 // Hooks
 import { useTimer } from "@/hooks/useTimer";
-import { time } from "console";
 
-export default function Home() {
+const shortBreak = () => {
+
   const [change, setChange] = useState(false);
 
   const handleStart = () => {
     setChange(!change);
   };
 
-  let timer = useTimer({
+  const timer = useTimer ({
     change,
-    initialTime: 900,
-  });
+    initialTime: 300,
+  })
 
   const handleReset = () => {
     setChange(false);
   };
-
   return (
     <>
       <Head>
@@ -39,12 +33,12 @@ export default function Home() {
       </Head>
       <Container>
         {/* options list */}
-        <List/>
+        <List />
         {/* Clock */}
-        <Clock time={timer}/>
+        <Clock time={timer} />
         {/* Button */}
         <Button onClick={handleStart} change={change}>
-          {change &&  (
+          {change && (
             <button
               onClick={handleReset}
               className="bg-electric-violet-100 rounded-full py-4 px-4 m-3 font-gotham"
@@ -56,4 +50,6 @@ export default function Home() {
       </Container>
     </>
   );
-}
+};
+
+export default shortBreak;

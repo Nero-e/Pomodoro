@@ -1,16 +1,17 @@
 interface ClockProps {
   time: number;
 }
-const Clock = ({ time }: ClockProps) => {
+const Clock = (props: ClockProps) => {
+  const {time} = props;
   const millisecondsToMinutes = (milliseconds: number) => {
     const minutes = Math.trunc(milliseconds / 60);
     const seconds = milliseconds % 60;
 
-    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+    return `${minutes < 10 ? `0${minutes}` : minutes }:${seconds < 10 ? `0${seconds}` : seconds}`;
   };
   return (
     <>
-      <div className="text-8xl py-8 font-bold text-electric-violet-500 font-gotham">
+      <div className={`text-8xl py-8 font-bold font-gotham text-amber`} >
         <h1>{millisecondsToMinutes(time)}</h1>
       </div>
     </>
